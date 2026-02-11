@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEXC Trade Master - Pro UI</title>
-    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/5968/5968260.png">
+    <title>Trade Master - MEXC Version</title>
+<link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/5968/5968260.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#000000">	
     <style>
         * { box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
@@ -17,20 +18,20 @@
         .side-panel { flex: 1; display: flex; flex-direction: column; gap: 10px; }
         
         .fee-panel { background: #000; border: 1px solid #333; border-radius: 4px; padding: 10px; }
-        .f-title { font-weight: bold; color: #00bfa5; text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 5px; margin-bottom: 8px; font-size: 11px; display: flex; justify-content: space-between; align-items: center; }
+        .f-title { font-weight: bold; color: #cd853f; text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 5px; margin-bottom: 8px; font-size: 11px; display: flex; justify-content: space-between; align-items: center; }
         .mode-text { font-size: 9px; color: #666; font-weight: normal; text-transform: none; }
         
         .fee-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
         .fee-cell { background-color: #111; border: 1px solid #222; border-radius: 3px; padding: 4px 6px; display: flex; flex-direction: column; justify-content: center; min-height: 40px; position: relative; cursor: help; }
-        .fee-cell:hover::after { content: attr(data-formula); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #00bfa5; color: #000; padding: 4px 8px; border-radius: 3px; white-space: nowrap; z-index: 100; font-weight: bold; font-size: 10px; }
+        .fee-cell:hover::after { content: attr(data-formula); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #cd853f; color: #000; padding: 4px 8px; border-radius: 3px; white-space: nowrap; z-index: 100; font-weight: bold; font-size: 10px; }
         
         .label { font-size: 9px; color: #666; text-transform: uppercase; font-weight: 600; line-height: 1.2; }
         .val { font-size: 13px; font-weight: 700; }
-        .c-gold { color: #ffd54f; } .c-red { color: #ef5350; } .c-green { color: #66bb6a; } .c-white { color: #eee; } .c-mexc { color: #00bfa5; }
+        .c-gold { color: #ffd54f; } .c-red { color: #ef5350; } .c-green { color: #66bb6a; } .c-white { color: #eee; } .c-brown { color: #cd853f; }
         
         .grid-container { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
         .cell { background-color: #111; border: 1px solid #222; border-radius: 3px; padding: 2px 6px; display: flex; flex-direction: column; justify-content: center; min-height: 40px; position: relative; }
-        .cell-yellow { background-color: #002b26 !important; border-color: #004d40 !important; }
+        .cell-yellow { background-color: #2b2203 !important; border-color: #665205 !important; }
         
         .real-box { position: absolute; bottom: 2px; right: 2px; background: rgba(255,255,255,0.05); padding: 1px 5px; border-radius: 2px; font-size: 11.5px; font-weight: 700; }
         .cell-risk-split { background-color: #160b0b !important; border-color: #2d1313 !important; padding: 0 !important; flex-direction: row !important; overflow: hidden; }
@@ -38,18 +39,18 @@
         .risk-divider { width: 1px; background-color: #2d1313; height: 100%; }
         
         input { background: transparent; border: none; border-bottom: 1px solid #333; color: #eee; font-size: 13px; font-weight: 700; width: 100%; outline: none; padding: 0; height: 18px; }
-        input:focus { border-bottom-color: #00bfa5; }
+        input:focus { border-bottom-color: #cd853f; }
         
         .banner { text-align: center; font-weight: 800; text-transform: uppercase; font-size: 12px; padding: 6px; margin-bottom: 8px; border-radius: 3px; border: 1px solid #333; background: #1a1a1a; color: #555; }
-        .bg-long { background-color: #004d40 !important; color: #fff !important; border: 1px solid #00bfa5 !important; }
+        .bg-long { background-color: #1b5e20 !important; color: #fff !important; border: 1px solid #4caf50 !important; }
         .bg-short { background-color: #b71c1c !important; color: #fff !important; border: 1px solid #f44336 !important; }
         
         .footer-action { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; border-top: 1px dashed #222; }
-        .btn-save { padding: 4px 12px; background: #00bfa5; color: #000; border: none; font-weight: bold; border-radius: 3px; cursor: pointer; font-size: 10px; }
-        .btn-save:hover { background: #00e676; }
+        .btn-save { padding: 4px 12px; background: #e6b800; color: #000; border: none; font-weight: bold; border-radius: 3px; cursor: pointer; font-size: 10px; }
+        .btn-save:hover { background: #ffcc00; }
 
         .history-wrapper { width: 100%; max-width: 800px; overflow-x: auto; margin-top: 15px; padding-bottom: 60px; }
-        table { width: 100%; border-collapse: collapse; font-size: 10px; text-align: center; border: 1px solid #333; table-layout: fixed; }
+        table { width: 100%; border-collapse: collapse; font-size: 10px; text-align: center; white-space: nowrap; border: 1px solid #333; table-layout: fixed; }
         th { background: #111; padding: 0; border: 1px solid #333; color: #666; height: 26px; }
         td { background: #080808; padding: 4px; border: 1px solid #222; color: #ccc; vertical-align: middle; }
         
@@ -57,64 +58,63 @@
         .col-pos { width: 45px; } .col-res { width: 58px; }
         
         .btn-mini { padding: 2px 0; width: 20px; text-align: center; border-radius: 2px; border: 1px solid #333; background: #222; color: #ccc; cursor: pointer; font-size: 9px; display: inline-block; }
-        
-        #dateModal { display: none; position: absolute; z-index: 9999; background-color: #161616; border: 1px solid #00bfa5; border-radius: 4px; padding: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.8); width: 180px; }
+        #dateModal { display: none; position: absolute; z-index: 9999; background-color: #161616; border: 1px solid #e6b800; border-radius: 4px; padding: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.8); width: 180px; }
         @media (max-width: 768px) { .main-container { flex-direction: column; } }
     </style>
 </head>
 <body>
 
-<div id="init-loader">
-    <div style="color:#00bfa5; margin-top:10px; font-size:10px;">ĐANG ĐỒNG BỘ MEXC...</div>
+<div id="init-loader" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:2000; display:flex; justify-content:center; align-items:center; flex-direction:column;">
+    <div style="border: 4px solid #333; border-top: 4px solid #e6b800; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;"></div>
+    <div style="color:#666; margin-top:10px; font-size:10px;">Đang tải dữ liệu MEXC...</div>
 </div>
 
 <div class="main-container">
     <div class="calculator-panel">
         <div id="badge" class="banner">TRẠNG THÁI CHỜ</div>
         <div class="grid-container">
-            <div class="cell"><span class="label">Cặp MEXC</span><input list="coins" id="pair" placeholder="BTC/USDT"></div>
+            <div class="cell"><span class="label">Cặp Coin</span><input list="coins" id="pair" placeholder="BTC/USDT"></div>
             <div class="cell"><span class="label">Vốn (Balance)</span><input type="number" id="balance" value="5000" oninput="updateRiskFromPct()"></div>
             <div class="cell cell-risk-split">
                 <div class="risk-half"><span class="label">Risk %</span><input type="number" id="riskPct" value="1.5" step="0.1" style="color:#ef5350; text-align:center;" oninput="updateRiskFromPct()"></div>
                 <div class="risk-divider"></div>
                 <div class="risk-half"><span class="label">Risk $</span><input type="number" id="riskUSD" step="0.1" style="color:#ef5350; text-align:center;" oninput="updateRiskFromUSD()"></div>
             </div>
-            <div class="cell"><span class="label">Entry</span><input type="number" id="entry" placeholder="0.00" oninput="calc()"></div>
-            <div class="cell"><span class="label">Đòn bẩy Max</span><span class="val c-gold" id="lev">x--</span></div>
+            <div class="cell"><span class="label">Entry</span><input type="number" id="entry" placeholder="Giá vào" oninput="calc()"></div>
+            <div class="cell"><span class="label">Đòn bẩy</span><span class="val c-gold" id="lev">x--</span></div>
             <div class="cell cell-yellow"><span class="label">Ký Quỹ</span><span class="val c-white" id="marginReq">--</span></div>
-            <div class="cell"><span class="label">Stop Loss</span><input type="number" id="sl" placeholder="0.00" oninput="calc()"></div>
-            <div class="cell"><span class="label">Thanh Lý (Fair)</span><span class="val c-mexc" id="liq">--</span></div>
+            <div class="cell"><span class="label">Stop Loss</span><input type="number" id="sl" placeholder="Cắt lỗ" oninput="calc()"></div>
+            <div class="cell"><span class="label">Thanh Lý (Fair)</span><span class="val c-gold" id="liq">--</span></div>
             <div class="cell"><span class="label" style="color:#fdd835">Volume ($)</span><span class="val c-white" id="qtyUSDT">--</span></div>
-            <div class="cell"><span class="label">Take Profit</span><input type="number" id="tp" placeholder="0.00" oninput="calc()"></div>
+            <div class="cell"><span class="label">Take Profit</span><input type="number" id="tp" placeholder="TP" oninput="calc()"></div>
             <div class="cell"><span class="label">Thua Lỗ</span><span class="val c-red" id="lossVal">--</span><div class="real-box c-red" id="real-loss">--</div></div>
             <div class="cell" id="cell-profit"><span class="label">Lợi Nhuận</span><span class="val c-green" id="winVal">--</span><div class="real-box c-green" id="real-profit">--</div></div>
         </div>
         <div class="footer-action">
             <div style="font-size:9px; color:#555; display:flex; gap:8px; align-items:center;">
                 <span id="sync-status"></span>
-                <label style="cursor:pointer; display:flex; align-items:center; gap:3px; color:#777"><input type="checkbox" id="stormCheck" onchange="calc()" style="width:auto; height: 10px;"> ⛈️ Volatility (Buffer 3%)</label>
+                <label style="cursor:pointer; display:flex; align-items:center; gap:3px; color:#777"><input type="checkbox" id="stormCheck" onchange="calc()" style="width:auto; height: 10px;"> ⛈️ Bão (Buffer 3%)</label>
             </div>
-            <button class="btn-save" onclick="saveTrade()">💾 Lưu Lệnh MEXC</button>
+            <button class="btn-save" onclick="saveTrade()">💾 Lưu Lệnh</button>
         </div>
     </div>
 
     <div class="side-panel">
         <div class="fee-panel">
-            <div class="f-title">💹 CHI PHÍ (MEXC FUTURES)</div>
+            <div class="f-title">💹 CHI PHÍ (MEXC)</div>
             <div class="fee-grid">
-                <div class="fee-cell" data-formula="Volume * 0% (Maker)"><span class="label">Maker Fee</span><span class="val c-white">0.00$</span></div>
-                <div class="fee-cell" data-formula="Volume * 0.02% (Taker)"><span class="label">Taker Fee</span><span class="val c-white" id="fee-close">0.00$</span></div>
-                <div class="fee-cell" data-formula="Ước tính 0.01%"><span class="label">Funding (8h)</span><span class="val c-white" id="fee-funding">0.00$</span></div>
-                <div class="fee-cell" style="border-color:#00bfa5" data-formula="Dựa trên Taker Fee"><span class="label" style="color:#00bfa5">Tổng Phí Dự Tính</span><span class="val c-mexc" id="fee-total">0.00$</span></div>
+                <div class="fee-cell" data-formula="Vol * 0%"><span class="label">Mở (Maker)</span><span class="val c-white">0.00$</span></div>
+                <div class="fee-cell" data-formula="Vol * 0.02%"><span class="label">Đóng (Taker)</span><span class="val c-white" id="fee-close">0.00$</span></div>
+                <div class="fee-cell" data-formula="Vol * 0.01%"><span class="label">Funding (8h)</span><span class="val c-white" id="fee-funding">0.00$</span></div>
+                <div class="fee-cell" style="border-color:#cd853f" data-formula="Cộng phí dự kiến"><span class="label" style="color:#cd853f">Tổng Phí</span><span class="val c-brown" id="fee-total">0.00$</span></div>
             </div>
         </div>
         <div class="fee-panel" style="margin-top:5px;">
             <div class="f-title">📝 CÔNG THỨC MEXC</div>
             <div style="color:#888; font-size:10px; line-height:1.6; padding:0 5px;">
-                <div><b style="color:#00bfa5">Fair Liq (Long)</b> = Entry * (1 - 1/Lev + 0.5%)</div>
-                <div><b style="color:#00bfa5">Fair Liq (Short)</b> = Entry * (1 + 1/Lev - 0.5%)</div>
-                <div style="border-top:1px dashed #333; margin:4px 0;"></div>
-                <div><b style="color:#ffd54f">MMR MEXC:</b> 0.5% (Duy trì tối thiểu)</div>
+                <div><b style="color:#cd853f">Lev Max</b> = 1 / (%SL + 0.5% + 2%)</div>
+                <div><b style="color:#ffd54f">Volume</b> = Risk $ / |Entry - SL| * Entry</div>
+                <div><b style="color:#ef5350">Liq Price</b> = Entry * (1 ± (1/Lev - 0.5%))</div>
             </div>
         </div>
     </div>
@@ -129,33 +129,24 @@
                 <th class="col-pair">Pair</th>
                 <th class="col-pos">Pos</th>
                 <th>Entry</th><th>SL</th><th>TP</th><th>Vol($)</th><th>Lev</th>
-                <th class="col-res">Result</th>
-                <th>P/L ($)</th>
+                <th class="col-res">Res</th>
+                <th>P/L</th>
                 <th>Note</th>
             </tr>
         </thead>
         <tbody id="tableBody"></tbody>
     </table>
-</div>
-
-<div id="dateModal">
-    <div style="color:#00bfa5; font-size:11px; font-weight:bold; margin-bottom:5px; text-align:center;">⏱️ GIỜ ĐÓNG LỆNH</div>
-    <input type="text" id="manualTimeInput" style="font-size:10px; padding:4px; width:100%; background:#000; color:#fff; border:1px solid #333;">
-    <div style="margin-top:8px; display:flex; justify-content:space-between;">
-        <button onclick="closeDateModal()" style="background:#333; color:#ccc; border:none; padding:4px 10px; cursor:pointer;">Hủy</button>
-        <button onclick="confirmCloseTrade()" style="background:#00bfa5; color:#000; border:none; padding:4px 10px; font-weight:bold; cursor:pointer;">Xác nhận</button>
-    </div>
+    <datalist id="coins"><option value="BTC/USDT"><option value="ETH/USDT"><option value="SOL/USDT"><option value="BNB/USDT"></datalist>
 </div>
 
 <script>
-    // --- THÔNG SỐ MEXC ---
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    
+    // --- CẤU HÌNH MEXC ---
     const MMR = 0.005; // 0.5%
-    const FEE_TAKER = 0.0002; // 0.02% (Dự phòng tối đa)
-    const FUNDING = 0.0001; // 0.01%
-    const API_URL = "YOUR_APPS_SCRIPT_URL_HERE"; 
-
-    let tradeData = [];
-    let pendingTradeIndex = -1; let pendingStatus = "";
+    const FEE_TAKER = 0.0002; // 0.02%
+    const FUNDING = 0.0001;
+    const API_URL = "YOUR_API_URL"; 
 
     function updateRiskFromPct() { 
         let bal = parseFloat(document.getElementById('balance').value) || 0; 
@@ -182,40 +173,39 @@
         if (entry > 0 && sl > 0 && entry !== sl) {
             let isLong = entry > sl;
             let badge = document.getElementById('badge');
-            badge.innerText = isLong ? "MEXC LONG (MUA)" : "MEXC SHORT (BÁN)";
-            badge.className = isLong ? "banner bg-long" : "banner bg-short";
+            if(isLong) { badge.innerText = "LONG (MUA)"; badge.className = "banner bg-long"; } 
+            else { badge.innerText = "SHORT (BÁN)"; badge.className = "banner bg-short"; }
 
             let dist = Math.abs(entry - sl);
             let slPct = dist / entry;
             
-            // Tính Volume
+            // Volume
             let qty = riskDollar / dist;
             let finalQty = Math.floor(qty * 1000) / 1000;
             let positionValue = finalQty * entry;
 
-            // Tính Lev Max theo chuẩn MEXC (MMR 0.5% + Buffer)
+            // Lev Max (MEXC)
             let BUFFER = isStorm ? 0.03 : 0.02;
             let safeLiqDist = slPct + MMR + BUFFER;
             let optLev = Math.floor(1 / safeLiqDist);
-            if(optLev > 200) optLev = 200; // MEXC Max 200x
-            if(optLev < 1) optLev = 1;
+            if(optLev > 200) optLev = 200; 
 
-            // Công thức Giá Thanh Lý Fair Price MEXC
+            // Liq Price (MEXC Fair Price)
             let liq = isLong 
                 ? entry * (1 - (1 / optLev) + MMR) 
                 : entry * (1 + (1 / optLev) - MMR);
 
-            // Chi phí MEXC
-            let fOpen = positionValue * FEE_TAKER; 
+            // Fees
+            let fOpen = 0; // Maker 0%
             let fClose = positionValue * FEE_TAKER;
             let fTotal = fOpen + fClose + (positionValue * FUNDING);
 
-            // Hiển thị
             document.getElementById('qtyUSDT').innerText = Math.round(positionValue).toLocaleString() + " $";
             document.getElementById('lev').innerText = "x" + optLev;
             document.getElementById('marginReq').innerText = (positionValue / optLev).toFixed(1) + "$";
-            document.getElementById('liq').innerText = liq.toFixed(liq < 1 ? 6 : 2);
+            document.getElementById('liq').innerText = liq.toFixed(liq < 1 ? 5 : 2);
             document.getElementById('fee-close').innerText = fClose.toFixed(2) + "$";
+            document.getElementById('fee-funding').innerText = (positionValue * FUNDING).toFixed(2) + "$";
             document.getElementById('fee-total').innerText = fTotal.toFixed(2) + "$";
             document.getElementById('lossVal').innerText = "-" + riskDollar.toFixed(1) + "$";
             document.getElementById('real-loss').innerText = (-(riskDollar + fTotal)).toFixed(1) + "$";
@@ -223,18 +213,17 @@
             if(tp > 0) {
                 let rawProfit = isLong ? (tp - entry) * finalQty : (entry - tp) * finalQty;
                 let realProfit = rawProfit - fTotal;
-                document.getElementById('winVal').innerText = (rawProfit > 0 ? "+" : "") + rawProfit.toFixed(1) + "$";
+                document.getElementById('winVal').innerText = "+" + rawProfit.toFixed(1) + "$";
                 document.getElementById('real-profit').innerText = (realProfit > 0 ? "+" : "") + realProfit.toFixed(1) + "$";
                 document.getElementById('winVal').className = rawProfit > 0 ? "val c-green" : "val c-red";
             }
         }
     }
 
-    // --- CÁC HÀM CÒN LẠI GIỮ NGUYÊN TỪ BẢN TRƯỚC ---
-    function getCurrentTimeString() { let now = new Date(); return now.getHours() + ":" + now.getMinutes() + " " + now.getDate() + "/" + (now.getMonth()+1); }
-    function saveTrade() { /* Logic lưu tương tự bản cũ */ alert("Đã lưu (Logic Sync cần API URL)"); }
-    function toggleAll() { let c = document.getElementById('selectAll').checked; document.querySelectorAll('.row-check').forEach(cb => cb.checked = c); }
-    window.onload = function() { document.getElementById('init-loader').style.display='none'; updateRiskFromPct(); }
+    window.onload = function() { 
+        document.getElementById('init-loader').style.display='none'; 
+        updateRiskFromPct(); 
+    }
 </script>
 </body>
 </html>
